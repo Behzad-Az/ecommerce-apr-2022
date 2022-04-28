@@ -16,9 +16,7 @@ interface Props {
 const Home: NextPage<Props> = ({ products, bannerData }) : JSX.Element => {
   return (
     <>
-      <HeroBanner 
-        heroBanner={bannerData[0]} 
-      />
+      <HeroBanner bannerData={bannerData[0]} />
       <div className='products-heading'>
         <h2>Best Selling Product</h2>
         <p>Speakers of many variations</p>
@@ -30,7 +28,7 @@ const Home: NextPage<Props> = ({ products, bannerData }) : JSX.Element => {
             />)
           }
         </div>
-        <FooterBanner />
+        <FooterBanner bannerData={bannerData[0]} />
       </div>
     </>
   );

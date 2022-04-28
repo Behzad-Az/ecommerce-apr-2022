@@ -5,24 +5,33 @@ import { Banner as BannerType } from '../lib/types';
 import { urlFor } from '../lib/sanityClient';
 
 interface Props{
-  heroBanner: BannerType;
+  bannerData: BannerType;
 };
 
-const HeroBanner: FC<Props> = ({ heroBanner }) : JSX.Element => {
+const HeroBanner: FC<Props> = ({ bannerData }) : JSX.Element => {
+  const {
+    smallText,
+    midText,
+    largeText1,
+    image,
+    product,
+    buttonText,
+    desc
+  } = bannerData;
   return (
     <div className='hero-banner-container'>
       <div>
-        <p className='beats-solo'>{heroBanner?.smallText}</p>
-        <h3>{heroBanner.midText}</h3>
-        <h1>{heroBanner.largeText1}</h1>
-        <img src={urlFor(heroBanner.image).toString()} alt='headphones' className='hero-banner-image' />
+        <p className='beats-solo'>{smallText}</p>
+        <h3>{midText}</h3>
+        <h1>{largeText1}</h1>
+        <img src={urlFor(image).toString()} alt='headphones' className='hero-banner-image' />
         <div>
-          <Link href={`/product/${heroBanner.product}`}>
-            <button type='button'>{heroBanner.buttonText}</button>
+          <Link href={`/product/${product}`}>
+            <button type='button'>{buttonText}</button>
           </Link>
           <div className='desc'>
             <h5>Description</h5>
-            <p>{heroBanner.desc}</p>
+            <p>{desc}</p>
           </div>
         </div>
       </div>

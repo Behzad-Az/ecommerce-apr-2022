@@ -3,7 +3,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 export default interface Banner {
   buttonText: string;
   desc: string;
-  discoutn: string;
+  discount: string;
   image: SanityImageSource;
   largeText1: string;
   largeText2: string;
