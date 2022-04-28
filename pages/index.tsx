@@ -1,7 +1,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
+const Home: NextPage = () : JSX.Element => {
   return (
     <>
       HeroBanner
