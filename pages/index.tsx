@@ -3,11 +3,14 @@ import type { NextPage } from 'next';
 
 import { client as sanityClient } from '../lib/sanityClient';
 import { Product, FooterBanner, HeroBanner } from '../components';
-import { Banner as BannerType } from '../lib/types';
+import { 
+  Banner as BannerType,
+  Product as ProductType
+} from '../lib/types';
 
 interface Props {
   bannerData: BannerType[];
-  products: {name: string}[];
+  products: ProductType[];
 };
 
 const Home: NextPage<Props> = ({ products, bannerData }) : JSX.Element => {
@@ -21,7 +24,10 @@ const Home: NextPage<Props> = ({ products, bannerData }) : JSX.Element => {
         <p>Speakers of many variations</p>
         <div className='products-container'>
           {
-            products?.map(p => p.name)
+            products?.map(product => <Product 
+              key={product._id}
+              product={product}
+            />)
           }
         </div>
         <FooterBanner />
@@ -32,7 +38,7 @@ const Home: NextPage<Props> = ({ products, bannerData }) : JSX.Element => {
 
 export const getServerSideProps = async () => {
   const productQuery: string = '*[_type == "product"]';
-  const products = await sanityClient.fetch(productQuery);
+  const products: ProductType[] = await sanityClient.fetch(productQuery);
 
   const bannerQuery = '*[_type == "banner"]';
   const bannerData: BannerType[] = await sanityClient.fetch(bannerQuery);
